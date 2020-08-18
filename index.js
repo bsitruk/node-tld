@@ -4,8 +4,10 @@ var url = require('url');
 
 
 var parse_url = function(remote_url, options) {
-  if(typeof remote_url == "string")
+  if(typeof remote_url == "string") {
+    remote_url = remote_url.startsWith("http") ? remote_url : "http://" + remote_url;
     remote_url = url.parse(remote_url);
+  }
   return parse_host(remote_url.hostname, options);
 };
 
